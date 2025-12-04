@@ -88,7 +88,7 @@ Menangani logika bisnis anggota.
 - `updateAnggota($id_anggota, $nama_anggota, $no_hp)` : Memanggil $this->anggota->update() untuk update data anggota
 - `deleteAnggota($id_anggota)` : Memanggil $this->anggota->delete() untuk menghapus data anggota
 
-## 1. Model — `models/Buku.php`
+## 2. `Buku`
 
 Model ini bertugas mengelola data buku di database.
 
@@ -111,8 +111,6 @@ Model ini bertugas mengelola data buku di database.
 - `delete($id_buku)`  
   Menghapus data buku berdasarkan ID.
 
----
-
 ## 2. View (Halaman Tampilan)
 
 - `buku_list.php`  
@@ -121,9 +119,7 @@ Model ini bertugas mengelola data buku di database.
 - `buku_form.php`  
   Halaman form untuk menambah atau mengedit data buku.
 
----
-
-## 3. ViewModel — `viewmodels/BukuViewModel.php`
+## 3. ViewModel
 
 Menghubungkan view dengan model serta mengatur logika bisnis buku.
 
@@ -146,10 +142,7 @@ Menghubungkan view dengan model serta mengatur logika bisnis buku.
 - `deleteBuku($id_buku)`  
   Menghapus buku berdasarkan ID.
 
----
-
-
-## 1. Model — `models/Genre.php`
+## 3. `Genre`
 
 Model ini bertugas mengelola data genre.
 
@@ -172,8 +165,6 @@ Model ini bertugas mengelola data genre.
 - `delete($id_genre)`  
   Menghapus genre berdasarkan ID.
 
----
-
 ## 2. View
 
 - `genre_list.php`  
@@ -181,8 +172,6 @@ Model ini bertugas mengelola data genre.
 
 - `genre_form.php`  
   Form untuk menambah atau mengubah data genre.
-
----
 
 ## 3. ViewModel — `viewmodels/GenreViewModel.php`
 
@@ -206,7 +195,6 @@ Mengatur logika bisnis untuk genre.
 
 - `deleteGenre($id_genre)`  
   Menghapus genre berdasarkan ID.
-
 
 ### 4. `Peminjaman`
 
