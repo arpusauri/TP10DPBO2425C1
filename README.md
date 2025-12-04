@@ -111,7 +111,7 @@ Model ini bertugas mengelola data buku di database.
 - `delete($id_buku)`  
   Menghapus data buku berdasarkan ID.
 
-## 2. View (Halaman Tampilan)
+## 2. View
 
 - `buku_list.php`  
   Menampilkan daftar buku lengkap beserta tombol aksi (Edit & Delete).
@@ -173,7 +173,7 @@ Model ini bertugas mengelola data genre.
 - `genre_form.php`  
   Form untuk menambah atau mengubah data genre.
 
-## 3. ViewModel — `viewmodels/GenreViewModel.php`
+## 3. ViewModel
 
 Mengatur logika bisnis untuk genre.
 
