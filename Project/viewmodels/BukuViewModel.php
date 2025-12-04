@@ -3,8 +3,10 @@ require_once 'models/Buku.php';
 
 class BukuViewModel
 {
+    // viewmodel buku
     private $buku;
 
+    // konstruktor
     public function __construct()
     {
         $this->buku = new Buku();

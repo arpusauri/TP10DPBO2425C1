@@ -3,15 +3,18 @@ require_once 'config/Database.php';
 
 class Anggota
 {
+    // model anggota
     private $conn;
     private $table = 'anggota';
 
+    // konstruktor untuk koneksi db
     public function __construct()
     {
         $database = new Database();
         $this->conn = $database->getConnection();
     }
 
+    // method CRUD
     public function getAll()
     {
         $query = 'SELECT * FROM ' . $this->table . ' ORDER BY id_anggota ASC';

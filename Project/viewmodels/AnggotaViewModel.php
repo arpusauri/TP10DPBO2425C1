@@ -3,8 +3,10 @@ require_once 'models/Anggota.php';
 
 class AnggotaViewModel
 {
+    // viewmodel anggota
     private $anggota;
 
+    // konstruktor
     public function __construct()
     {
         $this->anggota = new Anggota();

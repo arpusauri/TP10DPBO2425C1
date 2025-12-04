@@ -3,15 +3,18 @@ require_once "config/Database.php";
 
 class Genre
 {
+    // model genre
     private $conn;
     private $table = "genre";
 
+    // konstruktor untuk koneksi db
     public function __construct()
     {
         $database = new Database();
         $this->conn = $database->getConnection();
     }
 
+    // method CRUD
     public function getAll()
     {
         $query = "SELECT * FROM " . $this->table . " ORDER BY id_genre ASC";

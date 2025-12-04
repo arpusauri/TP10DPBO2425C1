@@ -3,8 +3,10 @@ require_once 'models/Genre.php';
 
 class GenreViewModel
 {
+    // viewmodel genre
     private $genre;
 
+    // konstruktor
     public function __construct()
     {
         $this->genre = new Genre();

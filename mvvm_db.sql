@@ -154,19 +154,19 @@ INSERT INTO anggota (nama_anggota, no_hp) VALUES
 ('Siti Aisyah', '085755443322'),
 ('Dewi Anggraini', '087712345678');
 
-INSERT INTO buku (id_genre, judul, penulis, penerbit) VALUES
-(1, 'Laut Bercerita', 'Leila S. Chudori', 'Gramedia'),
-(2, 'Petualangan Sherina', 'Riri Riza', 'Falcon'),
-(3, 'Sejarah Indonesia Modern', 'MC Ricklefs', 'Serambi'),
-(4, 'Belajar Pemrograman Web', 'Eko Kurniawan Khannedy', 'Programmer Zaman Now'),
-(5, 'Atomic Habits', 'James Clear', 'Penguin');
-
 INSERT INTO genre (nama_genre) VALUES
 ('Fiksi'),
 ('Petualangan'),
 ('Sejarah'),
 ('Teknologi'),
 ('Self Improvement');
+
+INSERT INTO buku (id_genre, judul, penulis, penerbit) VALUES
+(1, 'Laut Bercerita', 'Leila S. Chudori', 'Gramedia'),
+(2, 'Petualangan Sherina', 'Riri Riza', 'Falcon'),
+(3, 'Sejarah Indonesia Modern', 'MC Ricklefs', 'Serambi'),
+(4, 'Belajar Pemrograman Web', 'Eko Kurniawan Khannedy', 'Programmer Zaman Now'),
+(5, 'Atomic Habits', 'James Clear', 'Penguin');
 
 INSERT INTO peminjaman (id_anggota, id_buku, tanggal_pinjam, tanggal_kembali) VALUES
 (1, 1, '2025-01-01', '2025-01-05'),
