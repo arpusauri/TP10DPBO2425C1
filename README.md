@@ -8,6 +8,9 @@ Saya Arya Purnama Sauri dengan NIM 2408521 mengerjakan Tugas Praktikum 10 dalam 
 ### Nama
 `mvvm_db`
 
+## Relasi
+<img width="870" height="329" alt="image" src="https://github.com/user-attachments/assets/70ee0b1c-4318-46f5-a1e1-4b4ca6ac5d27" />
+
 ### Struktur Tabel
 Memiliki 4 entitas (tabel) yaitu.
 
@@ -85,52 +88,165 @@ Menangani logika bisnis anggota.
 - `updateAnggota($id_anggota, $nama_anggota, $no_hp)` : Memanggil $this->anggota->update() untuk update data anggota
 - `deleteAnggota($id_anggota)` : Memanggil $this->anggota->delete() untuk menghapus data anggota
 
-### 2. `Genre`
+## 1. Model — `models/Buku.php`
 
-#### Model
-Mengelola data Grand Prix di database.
-- **File**: `models/TabelGrandprix.php`
-- **Implements**: `KontrakModelGP.php`
-- **Extends**: `DB.php`
+Model ini bertugas mengelola data buku di database.
+
+### Methods
+- `__construct()`  
+  Inisialisasi koneksi database.
+
+- `getAll()`  
+  Mengambil semua data buku dan melakukan join ke tabel genre.
+
+- `getById($id_buku)`  
+  Mengambil satu data buku berdasarkan ID.
+
+- `create($id_genre, $judul, $penulis, $penerbit)`  
+  Menambahkan data buku baru.
+
+- `update($id_buku, $id_genre, $judul, $penulis, $penerbit)`  
+  Mengubah data buku berdasarkan ID.
+
+- `delete($id_buku)`  
+  Menghapus data buku berdasarkan ID.
+
+---
+
+## 2. View (Halaman Tampilan)
+
+- `buku_list.php`  
+  Menampilkan daftar buku lengkap beserta tombol aksi (Edit & Delete).
+
+- `buku_form.php`  
+  Halaman form untuk menambah atau mengedit data buku.
+
+---
+
+## 3. ViewModel — `viewmodels/BukuViewModel.php`
+
+Menghubungkan view dengan model serta mengatur logika bisnis buku.
+
+### Methods
+- `__construct()`  
+  Membuat instance model Buku.
+
+- `getBukuList()`  
+  Mengambil semua data buku melalui model.
+
+- `getBukuById($id_buku)`  
+  Mengambil buku tertentu berdasarkan ID.
+
+- `addBuku($id_genre, $judul, $penulis, $penerbit)`  
+  Menambahkan buku baru melalui model.
+
+- `updateBuku($id_buku, $id_genre, $judul, $penulis, $penerbit)`  
+  Memperbarui data buku melalui model.
+
+- `deleteBuku($id_buku)`  
+  Menghapus buku berdasarkan ID.
+
+---
+
+
+## 1. Model — `models/Genre.php`
+
+Model ini bertugas mengelola data genre.
+
+### Methods
+- `__construct()`  
+  Menginisialisasi koneksi database.
+
+- `getAll()`  
+  Mengambil semua data genre.
+
+- `getById($id_genre)`  
+  Mengambil satu data genre berdasarkan ID.
+
+- `create($nama_genre)`  
+  Menambahkan genre baru.
+
+- `update($id_genre, $nama_genre)`  
+  Mengubah genre berdasarkan ID.
+
+- `delete($id_genre)`  
+  Menghapus genre berdasarkan ID.
+
+---
+
+## 2. View
+
+- `genre_list.php`  
+  Menampilkan daftar genre beserta aksi edit/hapus.
+
+- `genre_form.php`  
+  Form untuk menambah atau mengubah data genre.
+
+---
+
+## 3. ViewModel — `viewmodels/GenreViewModel.php`
+
+Mengatur logika bisnis untuk genre.
+
+### Methods
+- `__construct()`  
+  Membuat instance dari model Genre.
+
+- `getGenreList()`  
+  Mengambil semua data genre.
+
+- `getGenreById($id_genre)`  
+  Mengambil genre tertentu berdasarkan ID.
+
+- `addGenre($nama_genre)`  
+  Menambahkan data genre baru.
+
+- `updateGenre($id_genre, $nama_genre)`  
+  Mengupdate data genre berdasarkan ID.
+
+- `deleteGenre($id_genre)`  
+  Menghapus genre berdasarkan ID.
+
+
+### 4. `Peminjaman`
+
+**Model:** Mengelola data peminjaman di database 
+
+- **File** : models/Peminjaman.php
+- **Extends** : config/Database.php
 
 **Method:**
-- `__construct($host, $db, $user, $pass)` : Inisialisasi koneksi database
-- `getAllGP()` : Mengambil semua data Grand Prix, diurutkan berdasarkan tanggal terbaru
-- `getGPById($id)` : Mengambil data Grand Prix spesifik berdasarkan ID
-- `addGP($nama, $tahun, $tanggal, $ket)` : Menambah data Grand Prix baru ke database
-- `updateGP($id, $nama, $tahun, $tanggal, $ket)` : Mengupdate data Grand Prix berdasarkan ID
-- `deleteGP($id)` : Menghapus data Grand Prix dari database berdasarkan ID
+- `__construct()` : Constructor untuk koneksi db
+- `getAll()`: Mengambil semua data tabel peminjaman
+- `getById($id_peminjaman)` : Mengambil data peminjaman spesifik berdasarkan ID
+- `create($id_anggota, $id_buku, $tanggal_pinjam, $tanggal_kembali)` : Menambah data peminjaman baru
+- `update($id_peminjaman, $id_anggota, $id_buku, $tanggal_pinjam, $tanggal_kembali)` : Mengubah data peminjaman berdasarkan ID
+- `delete($id_peminjaman)` : Menghapus data peminjaman dari database berdasarkan ID
 
 #### View
-Menampilkan antarmuka pengelolaan Grand Prix.
-- **File**: `views/ViewGrandprix.php`
-- **Implements**: `KontrakViewGP.php`
-- **Template**: `template/gp_list.html` (list), `template/gp_form.html` (form)
+Menampilkan antarmuka pengelolaan data peminjaman.
+- `peminjaman_list.php` : Halaman untuk menampilkan data peminjaman dan (Actions)
+- `peminjaman_form.php` : Halaman untuk menambah/mengupdate data peminjaman
+
+#### ViewModel
+Menangani logika bisnis peminjaman.
+- **File**: `viewmodels/PeminjamanViewModel.php`
+- **Implements**: `models/Peminjaman.php`
 
 **Method:**
-- `tampilListGP($data)` : Menampilkan tabel list Grand Prix dengan kolom: Nama GrandPrix, Tahun, Tanggal, Keterangan, dan tombol Edit & Hapus
-- `tampilFormGP($data = null)` : Menampilkan form input untuk tambah/edit Grand Prix dengan field: nama_gp, tahun, tanggal, keterangan
-
-#### Presenter
-Mengatur alur CRUD Grand Prix (Business Logic).
-- **File**: `presenters/PresenterGP.php`
-- **Implements**: `KontrakPresenterGP.php`
-
-**Method:**
-- `__construct($model, $view)` : Inisialisasi dengan dependency injection Model dan View
-- `loadData()` : Mengambil data dari model, konversi ke objek GrandPrix, kirim ke view
-- `showFormAdd()` : Menampilkan form kosong untuk tambah data
-- `showFormEdit($id)` : Mengambil data spesifik dan tampilkan ke form edit
-- `add($nama, $tahun, $tanggal, $ket)` : Meminta model untuk menyimpan data baru
-- `edit($id, $nama, $tahun, $tanggal, $ket)` : Meminta model untuk update data
-- `delete($id)` : Meminta model untuk menghapus data
+- `__construct()` : Inisialisasi dan membuat instance dari model peminjaman
+- `getPeminjamanList()` : Mengambil semua data peminjaman dari model via $this->peminjaman->getAll()
+- `getPeminjamanById($id_peminjaman)` : Mengambil data peminjaman spesifik berdasarkan ID via $this->peminjaman->getById($id_peminjaman)
+- `addPeminjaman($id_anggota, $id_buku, $tanggal_pinjam, $tanggal_kembali)` : Memanggil $this->peminjaman->create() untuk menyimpan data peminjaman baru
+- `updatePeminjaman($id_peminjaman, $id_anggota, $id_buku, $tanggal_pinjam, $tanggal_kembali)` : Memanggil $this->peminjaman->update() untuk update data peminjaman
+- `deletePeminjaman($id_peminjaman)` : Memanggil $this->peminjaman->delete() untuk menghapus data peminjaman
 
 # Penjelasan Alur Program
 
 ## 1. Jalankan Program
 
 ## 2. Menampilkan tampilan awal 
-Terdapat navbar yang mengandung 5 link yang bisa ditekan oleh user:
+Terdapat navbar yang mengandung 4 link yang bisa ditekan oleh user:
 - **Anggota** : Akses halaman tabel anggota
 - **Genre** : Akses halaman tabel genre
 - **Buku** : Akses halaman tabel buku
@@ -144,23 +260,25 @@ Terdapat navbar yang mengandung 5 link yang bisa ditekan oleh user:
 ### CREATE
 1. Klik tombol **Add (tabel)**" di bagian atas ujung kiri tabel
 2. Redirect halaman dari `list` menjadi `form`
-3. Masukan data 
-4. 
+3. Masukan data yang dibutuhkan
+4. Tekan tombol **Save**
+5. Data berhasil ditambahkan ke database
+6. Redirect ke halaman selanjutnya
 
 ### UPDATE
 1. Klik tombol "**Edit**" pada baris data yang ingin diubah
 2. Redirect ke halaman form dengan value sesuai data baris
 6. Ubah data sesuai kebutuhan
-7. Klik "**Save**" 
-8. Form submit via POST dengan `action=edit`, `nav=pembalap`, dan `id`
-9. Presenter memanggil `$model->ubahPembalap(...)`
-10. Data terupdate di database
-11. Redirect ke `index.php?nav=pembalap`
+7. Tekan tombol **Save**
+8. Data berhasil diubah pada database
+9. Redirect ke halaman sebelumnya
 
 ### DELETE
 1. Klik tombol **Delete**
-2. Menampilkan konfirmasi JavaScript "OK" atau "Cancel"
-3. Jika OK, data akan dihapus dari database
-4. Jika Cancel, akan membatalkan aksi penghapusan
+2. Menampilkan konfirmasi JavaScript "Hapus data ini?" dan juga tombol "OK" atau "Cancel"
+3. Tekan Cancel, untuk membatalkan aksi penghapusan
+4. Tekan OK, untuk menghapus data
+5. Data berhasil dihapus di database
 
 # Dokumentasi
+https://github.com/user-attachments/assets/2b510c64-d0a3-412d-a7ee-b5c64542a960
